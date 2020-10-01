@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30517.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LostAnimal.Android", "LostAnimal\LostAnimal.Android\LostAnimal.Android.csproj", "{BB24B5EB-6120-4877-AB10-8BB9968B9020}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LostAnimal", "LostAnimal\LostAnimal\LostAnimal.csproj", "{D04AEC9C-DC2B-4812-81E3-03A062074253}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB24B5EB-6120-4877-AB10-8BB9968B9020}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB24B5EB-6120-4877-AB10-8BB9968B9020}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB24B5EB-6120-4877-AB10-8BB9968B9020}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{BB24B5EB-6120-4877-AB10-8BB9968B9020}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB24B5EB-6120-4877-AB10-8BB9968B9020}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB24B5EB-6120-4877-AB10-8BB9968B9020}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{D04AEC9C-DC2B-4812-81E3-03A062074253}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D04AEC9C-DC2B-4812-81E3-03A062074253}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D04AEC9C-DC2B-4812-81E3-03A062074253}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{D04AEC9C-DC2B-4812-81E3-03A062074253}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D04AEC9C-DC2B-4812-81E3-03A062074253}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D04AEC9C-DC2B-4812-81E3-03A062074253}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A276E743-2C3F-4074-B804-798F2EC3BCF8}
+	EndGlobalSection
+EndGlobal

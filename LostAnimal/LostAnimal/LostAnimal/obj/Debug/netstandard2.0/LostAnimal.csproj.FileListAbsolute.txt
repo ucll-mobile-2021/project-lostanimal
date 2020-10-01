@@ -1,0 +1,14 @@
+C:\Users\jefqu\Desktop\3TI\Mobiele\project-lostanimal\LostAnimal\LostAnimal\LostAnimal\bin\Debug\netstandard2.0\LostAnimal.deps.json
+C:\Users\jefqu\Desktop\3TI\Mobiele\project-lostanimal\LostAnimal\LostAnimal\LostAnimal\bin\Debug\netstandard2.0\LostAnimal.dll
+C:\Users\jefqu\Desktop\3TI\Mobiele\project-lostanimal\LostAnimal\LostAnimal\LostAnimal\bin\Debug\netstandard2.0\ref\LostAnimal.dll
+C:\Users\jefqu\Desktop\3TI\Mobiele\project-lostanimal\LostAnimal\LostAnimal\LostAnimal\bin\Debug\netstandard2.0\LostAnimal.pdb
+C:\Users\jefqu\Desktop\3TI\Mobiele\project-lostanimal\LostAnimal\LostAnimal\LostAnimal\obj\Debug\netstandard2.0\LostAnimal.csprojAssemblyReference.cache
+C:\Users\jefqu\Desktop\3TI\Mobiele\project-lostanimal\LostAnimal\LostAnimal\LostAnimal\obj\Debug\netstandard2.0\App.xaml.g.cs
+C:\Users\jefqu\Desktop\3TI\Mobiele\project-lostanimal\LostAnimal\LostAnimal\LostAnimal\obj\Debug\netstandard2.0\MainPage.xaml.g.cs
+C:\Users\jefqu\Desktop\3TI\Mobiele\project-lostanimal\LostAnimal\LostAnimal\LostAnimal\obj\Debug\netstandard2.0\LostAnimal.AssemblyInfoInputs.cache
+C:\Users\jefqu\Desktop\3TI\Mobiele\project-lostanimal\LostAnimal\LostAnimal\LostAnimal\obj\Debug\netstandard2.0\LostAnimal.AssemblyInfo.cs
+C:\Users\jefqu\Desktop\3TI\Mobiele\project-lostanimal\LostAnimal\LostAnimal\LostAnimal\obj\Debug\netstandard2.0\LostAnimal.csproj.CoreCompileInputs.cache
+C:\Users\jefqu\Desktop\3TI\Mobiele\project-lostanimal\LostAnimal\LostAnimal\LostAnimal\obj\Debug\netstandard2.0\XamlC.stamp
+C:\Users\jefqu\Desktop\3TI\Mobiele\project-lostanimal\LostAnimal\LostAnimal\LostAnimal\obj\Debug\netstandard2.0\LostAnimal.dll
+C:\Users\jefqu\Desktop\3TI\Mobiele\project-lostanimal\LostAnimal\LostAnimal\LostAnimal\obj\Debug\netstandard2.0\ref\LostAnimal.dll
+C:\Users\jefqu\Desktop\3TI\Mobiele\project-lostanimal\LostAnimal\LostAnimal\LostAnimal\obj\Debug\netstandard2.0\LostAnimal.pdb
