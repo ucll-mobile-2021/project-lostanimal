@@ -11,7 +11,23 @@ class DatabaseService {
       Firestore.instance.collection('animals');
 
   Future updateUserData() async {
-    return lostAnimalCollection.document(uid).collection("animals");
+    return lostAnimalCollection.document("3").collection("animals");
+  }
+
+  Future updateAnimalData(String name, String beschrijving, String animalType,
+      String straatnaam, String huisnr, String gemeente, String userid) async {
+    return await lostAnimalCollection
+        .document(userid)
+        .collection("animals")
+        .document()
+        .setData({
+      'name': name,
+      'beschrijving': beschrijving,
+      'animalType': animalType,
+      'straatnaam': straatnaam,
+      'huisnr': huisnr,
+      'gemeente': gemeente
+    });
   }
 
   // animal list from snapshot

@@ -1,19 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:lost_animal/services/database.dart';
 import 'package:lost_animal/shared/constants.dart';
 import 'package:lost_animal/shared/loading.dart';
+import 'package:lost_animal/models/user.dart';
 
 class Post extends StatefulWidget {
   final Function toggleView;
-  Post({this.toggleView});
+  final User user;
+  Post({this.toggleView, this.user});
 
   @override
-  _PostState createState() => _PostState();
+  _PostState createState() => _PostState(user: user);
 }
 
 class _PostState extends State<Post> {
   //final AuthService _auth = AuthService();
+  final DatabaseService _db = DatabaseService();
   final _formKey = GlobalKey<FormState>();
   bool loading = false;
+
+  User user;
+  _PostState({this.user});
 
   //textfield state
   String name = '';
@@ -23,6 +30,7 @@ class _PostState extends State<Post> {
   String huisnummer = '';
   String woonplaats = '';
 
+//extra param
   @override
   Widget build(BuildContext context) {
     return loading
@@ -65,7 +73,6 @@ class _PostState extends State<Post> {
                         validator: (val) => val.length < 6
                             ? 'give the type of your animal'
                             : null,
-                        obscureText: true,
                         onChanged: (val) {
                           setState(() => animalType = val);
                         }),
@@ -76,7 +83,6 @@ class _PostState extends State<Post> {
                         validator: (val) => val.length < 6
                             ? 'give a description of the lost animal'
                             : null,
-                        obscureText: true,
                         onChanged: (val) {
                           setState(() => beschrijving = val);
                         }),
@@ -87,7 +93,6 @@ class _PostState extends State<Post> {
                         validator: (val) => val.length < 6
                             ? 'give the streetname of the spot where the animal has been seen last'
                             : null,
-                        obscureText: true,
                         onChanged: (val) {
                           setState(() => straatnaam = val);
                         }),
@@ -97,7 +102,6 @@ class _PostState extends State<Post> {
                             hintText: 'house number'),
                         validator: (val) =>
                             val.length < 6 ? 'give the house number' : null,
-                        obscureText: true,
                         onChanged: (val) {
                           setState(() => huisnummer = val);
                         }),
@@ -107,7 +111,6 @@ class _PostState extends State<Post> {
                             textInputDecoration.copyWith(hintText: 'city'),
                         validator: (val) =>
                             val.length < 6 ? 'give the city' : null,
-                        obscureText: true,
                         onChanged: (val) {
                           setState(() => woonplaats = val);
                         }),
@@ -119,18 +122,14 @@ class _PostState extends State<Post> {
                         style: TextStyle(color: Colors.white),
                       ),
                       onPressed: () async {
-                        /*if (_formKey.currentState.validate()) {
-                          setState(() => loading = true);
-                          dynamic result = await _auth
-                              .signInWithEmailAndPassword(email, password);
-                          if (result == null) {
-                            setState(() {
-                              error =
-                                  'Could not sign in with those credentials';
-                              loading = false;
-                            });
-                          }
-                        }*/
+                        await _db.updateAnimalData(
+                            name,
+                            beschrijving,
+                            animalType,
+                            straatnaam,
+                            huisnummer,
+                            woonplaats,
+                            user.getUid());
                       },
                     ),
                     SizedBox(height: 12.0),

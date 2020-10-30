@@ -4,4 +4,8 @@ class User {
   String password;
 
   User({this.uid});
+
+  String getUid() {
+    return uid;
+  }
 }

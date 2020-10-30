@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:lost_animal/models/user.dart';
 import 'package:lost_animal/screens/home/home.dart';
 import 'package:lost_animal/screens/post/post.dart';
 
 class HomeState extends StatefulWidget {
+  final User user;
+  HomeState({this.user});
   @override
-  _HomeStateState createState() => _HomeStateState();
+  _HomeStateState createState() => _HomeStateState(user: user);
 }
 
 class _HomeStateState extends State<HomeState> {
+  final User user;
+  _HomeStateState({this.user});
   bool showHome = true;
 
   void toggleView() {
@@ -19,7 +24,7 @@ class _HomeStateState extends State<HomeState> {
     if (showHome) {
       return Home(toggleView: toggleView);
     } else {
-      return Post(toggleView: toggleView);
+      return Post(toggleView: toggleView, user: user);
     }
   }
 }

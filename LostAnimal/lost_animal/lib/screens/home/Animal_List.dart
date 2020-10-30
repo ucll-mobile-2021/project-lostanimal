@@ -11,10 +11,10 @@ class AnimalList extends StatefulWidget {
 class _AnimalListState extends State<AnimalList> {
   @override
   Widget build(BuildContext context) {
-    final animals = Provider.of<List<Animal>>(context);
+    List animals = Provider.of<List<Animal>>(context);
 
     return ListView.builder(
-      itemCount: animals.length > 0 ? animals.length : 0,
+      itemCount: animals.length == null ? 0 : animals.length,
       itemBuilder: (context, index) {
         return AnimalTile(animal: animals[index]);
       },
