@@ -5,30 +5,54 @@ import 'package:lost_animal/services/database.dart';
 import 'package:provider/provider.dart';
 import 'package:lost_animal/screens/home/Animal_List.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
+  final Function toggleView;
+  Home({this.toggleView});
+  @override
+  _HomeSState createState() => _HomeSState();
+}
 
+class _HomeSState extends State<Home> {
   final AuthService _auth = AuthService();
+
   @override
   Widget build(BuildContext context) {
     return StreamProvider<List<Animal>>.value(
         value: DatabaseService().animals,
         child: Scaffold(
-        backgroundColor: Colors.brown[50],
-        appBar: AppBar(
-          title: Text('Lost Animals') ,
-          backgroundColor: Colors.brown[400],
-          elevation: 0.0,
-          actions: <Widget>[
-            FlatButton.icon(
-              onPressed: () async{
-                await _auth.signOut();
-              }, 
-              icon: Icon(Icons.person), 
-              label: Text('logout')
-              )
-          ]),
+          backgroundColor: Colors.deepPurple[50],
+          appBar: AppBar(
+              title: Text('Lost Animals'),
+              backgroundColor: Colors.deepPurpleAccent,
+              elevation: 0.0,
+              actions: <Widget>[
+                FlatButton.icon(
+                    onPressed: () async {
+                      await _auth.signOut();
+                    },
+                    icon: Icon(Icons.person),
+                    label: Text('logout')),
+              ]),
           body: AnimalList(),
-      ),
-    );
+          bottomNavigationBar: BottomAppBar(
+            child: Row(
+              children: <Widget>[
+                Spacer(),
+                FlatButton.icon(
+                    onPressed: () {
+                      widget.toggleView();
+                    },
+                    icon: Icon(Icons.add),
+                    label: Text('add')),
+                FlatButton.icon(
+                    onPressed: () async {
+                      await _auth.signOut();
+                    },
+                    icon: Icon(Icons.settings),
+                    label: Text('Change Radius'))
+              ],
+            ),
+          ),
+        ));
   }
 }

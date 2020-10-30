@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:lost_animal/models/user.dart';
-import 'package:lost_animal/screens/authenticate/authenticate.dart';
 import 'package:lost_animal/screens/home/home.dart';
 import 'package:lost_animal/screens/post/post.dart';
-import 'package:provider/provider.dart';
 
-class Wrapper extends StatefulWidget {
+class HomeState extends StatefulWidget {
   @override
-  _WrapperState createState() => _WrapperState();
+  _HomeStateState createState() => _HomeStateState();
 }
 
-class _WrapperState extends State<Wrapper> {
+class _HomeStateState extends State<HomeState> {
   bool showHome = true;
 
   void toggleView() {
