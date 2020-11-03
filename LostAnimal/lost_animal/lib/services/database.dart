@@ -11,22 +11,19 @@ class DatabaseService {
       Firestore.instance.collection('animals');
 
   Future updateUserData() async {
-    return lostAnimalCollection.document("3").collection("animals");
+    return lostAnimalCollection;
   }
 
   Future updateAnimalData(String name, String beschrijving, String animalType,
       String straatnaam, String huisnr, String gemeente, String userid) async {
-    return await lostAnimalCollection
-        .document(userid)
-        .collection("animals")
-        .document()
-        .setData({
+    return await lostAnimalCollection.document().setData({
       'name': name,
       'beschrijving': beschrijving,
       'animalType': animalType,
       'straatnaam': straatnaam,
       'huisnr': huisnr,
-      'gemeente': gemeente
+      'gemeente': gemeente,
+      'userid': userid
     });
   }
 

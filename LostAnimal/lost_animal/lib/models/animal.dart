@@ -6,6 +6,7 @@ class Animal {
   final String straatnaam;
   final String huisnr;
   final String gemeente;
+  final String userid;
   //final List<Image> images;
 
   Animal(
@@ -14,5 +15,6 @@ class Animal {
       this.animalType,
       this.gemeente,
       this.huisnr,
-      this.straatnaam});
+      this.straatnaam,
+      this.userid});
 }

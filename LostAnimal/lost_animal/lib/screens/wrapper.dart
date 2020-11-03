@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:lost_animal/models/user.dart';
 import 'package:lost_animal/screens/authenticate/authenticate.dart';
 import 'package:lost_animal/screens/home/homeState.dart';
-import 'package:lost_animal/screens/post/post.dart';
 import 'package:provider/provider.dart';
 
 class Wrapper extends StatelessWidget {

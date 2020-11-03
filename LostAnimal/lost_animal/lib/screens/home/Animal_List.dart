@@ -12,6 +12,14 @@ class _AnimalListState extends State<AnimalList> {
   @override
   Widget build(BuildContext context) {
     List animals = Provider.of<List<Animal>>(context);
+    Animal an = new Animal(
+        name: "t",
+        beschrijving: "t",
+        animalType: "t",
+        huisnr: "t",
+        straatnaam: "t",
+        gemeente: "t");
+    animals.add(an);
 
     return ListView.builder(
       itemCount: animals.length == null ? 0 : animals.length,
