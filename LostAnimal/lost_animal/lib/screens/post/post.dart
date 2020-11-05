@@ -25,7 +25,7 @@ class _PostState extends State<Post> {
   String error = "";
   //textfield state
   String name = '';
-  String animalType = '';
+  String animalType = 'hond';
   String beschrijving = '';
   String straatnaam = '';
   String huisnummer = '';
@@ -70,12 +70,15 @@ class _PostState extends State<Post> {
                             setState(() => name = val);
                           }),
                       SizedBox(height: 20.0),
-                      TextFormField(
-                          decoration: textInputDecoration.copyWith(
-                              hintText: 'animaltype'),
-                          validator: (val) => val.length < 6
-                              ? 'give the type of your animal'
-                              : null,
+                      DropdownButton(
+                        
+                        iconSize: 100.0,
+                        isExpanded: true,
+                          value: animalType,
+                          items: [
+                            DropdownMenuItem(child: Text("hond"), value: 'hond'),
+                            DropdownMenuItem(child: Text("kat"), value: 'kat')
+                          ],
                           onChanged: (val) {
                             setState(() => animalType = val);
                           }),

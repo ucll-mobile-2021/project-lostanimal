@@ -22,7 +22,6 @@ class DatabaseService {
         exists = true,
         print('bestaat')
       }else{
-        
           lostAnimalCollection.document(userid+name+animalType).setData({
             'name': name,
             'beschrijving': beschrijving,
