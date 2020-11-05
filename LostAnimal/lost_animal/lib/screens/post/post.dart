@@ -141,7 +141,8 @@ class _PostState extends State<Post> {
                                     'wrong credentials or animal might already exists';
                                 loading = false;
                               });
-                            } else {
+                            } 
+                            if (result != null) {
                               widget.toggleView();
                             }
                           }

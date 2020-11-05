@@ -16,23 +16,36 @@ class DatabaseService {
 
   Future updateAnimalData(String name, String beschrijving, String animalType,
       String straatnaam, String huisnr, String gemeente, String userid) async {
-    print(lostAnimalCollection.toString());
-    try {
-      return await lostAnimalCollection
-          .document(userid + name + animalType)
-          .setData({
-        'name': name,
-        'beschrijving': beschrijving,
-        'animalType': animalType,
-        'straatnaam': straatnaam,
-        'huisnr': huisnr,
-        'gemeente': gemeente,
-        'userid': userid
-      });
-    } catch (e) {
-      print(e.toString());
-      return null;
-    }
+        bool exists = false;
+        
+      await lostAnimalCollection.document(userid+name+animalType).get().then((docSnapshot) => {if(docSnapshot.exists){
+        exists = true,
+        print('bestaat')
+      }else{
+        
+          lostAnimalCollection.document(userid+name+animalType).setData({
+            'name': name,
+            'beschrijving': beschrijving,
+            'animalType': animalType,
+            'straatnaam': straatnaam,
+            'huisnr': huisnr,
+            'gemeente': gemeente,
+            'userid': userid        
+      }),
+      print('bestaat niet')
+      }}); 
+
+      if(exists){
+        print('return null');
+        return null;
+      }
+      else{
+        print('userid');
+        return userid;
+      }      
+  
+      
+    
   }
 
   // animal list from snapshot
@@ -40,7 +53,8 @@ class DatabaseService {
     return snapshot.documents.map((doc) {
       return Animal(
           animalType: doc.data['animalType'] ?? '',
-          name: doc.data['name'] ?? '');
+          name: doc.data['name'] ?? '',
+          userid: doc.data['userid'] ?? '');
     }).toList();
   }
 
@@ -48,4 +62,6 @@ class DatabaseService {
   Stream<List<Animal>> get animals {
     return lostAnimalCollection.snapshots().map(_animalListFromSnapshot);
   }
+
+  
 }
