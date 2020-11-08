@@ -40,7 +40,7 @@ class _HomeSState extends State<Home> {
                 Spacer(),
                 FlatButton.icon(
                     onPressed: () {
-                      widget.toggleView();
+                      widget.toggleView(2);
                     },
                     icon: Icon(Icons.add),
                     label: Text('add')),

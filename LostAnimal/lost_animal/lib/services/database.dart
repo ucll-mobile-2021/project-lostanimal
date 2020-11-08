@@ -1,3 +1,4 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:lost_animal/models/animal.dart';
 
@@ -29,7 +30,8 @@ class DatabaseService {
             'straatnaam': straatnaam,
             'huisnr': huisnr,
             'gemeente': gemeente,
-            'userid': userid        
+            'userid': userid 
+                   
       }),
       print('bestaat niet')
       }}); 

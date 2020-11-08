@@ -146,7 +146,7 @@ class _PostState extends State<Post> {
                               });
                             } 
                             if (result != null) {
-                              widget.toggleView();
+                              widget.toggleView(1);
                             }
                           }
                         },

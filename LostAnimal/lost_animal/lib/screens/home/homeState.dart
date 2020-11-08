@@ -13,18 +13,27 @@ class HomeState extends StatefulWidget {
 class _HomeStateState extends State<HomeState> {
   final User user;
   _HomeStateState({this.user});
-  bool showHome = true;
 
-  void toggleView() {
-    setState(() => showHome = !showHome);
+  int toggleInt = 1;
+
+  void toggleView(int toggle) {
+    setState(() => toggleInt  = toggle);
+
   }
 
   @override
   Widget build(BuildContext context) {
-    if (showHome) {
+    if (toggleInt == 1) {
       return Home(toggleView: toggleView);
-    } else {
+    } 
+    if(toggleInt ==2){
+    
       return Post(toggleView: toggleView, user: user);
+    }
+
+    else {
+      return Home(toggleView: toggleView);
+
     }
   }
 }
