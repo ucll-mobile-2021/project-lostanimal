@@ -46,7 +46,7 @@ class _PostState extends State<Post> {
               actions: <Widget>[
                 FlatButton.icon(
                     onPressed: () {
-                      widget.toggleView();
+                      widget.toggleView(1);
                     },
                     icon: Icon(Icons.home),
                     label: Text('Home'))
@@ -70,8 +70,7 @@ class _PostState extends State<Post> {
                             setState(() => name = val);
                           }),
                       SizedBox(height: 20.0),
-                      DropdownButton(
-                        
+                      DropdownButton(                        
                         iconSize: 100.0,
                         isExpanded: true,
                           value: animalType,
@@ -146,7 +145,7 @@ class _PostState extends State<Post> {
                               });
                             } 
                             if (result != null) {
-                              widget.toggleView(1);
+                              widget.toggleView(3, id:user.getUid()+name+animalType);
                             }
                           }
                         },

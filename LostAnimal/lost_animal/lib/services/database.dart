@@ -64,5 +64,28 @@ class DatabaseService {
     return lostAnimalCollection.snapshots().map(_animalListFromSnapshot);
   }
 
+  Future getAnimal(String animalId) async{
+    Animal a;
+    await lostAnimalCollection.document(animalId).get().then((docSnapshot) => { if(docSnapshot.exists){
+      
+      a = Animal(
+          animalType: docSnapshot.data['animalType'] ?? '',
+          name: docSnapshot.data['name'] ?? '',
+          userid: docSnapshot.data['userid'] ?? '',
+          beschrijving: docSnapshot.data['beschrijving'] ?? '',
+          gemeente: docSnapshot.data['gemeente'] ?? '',
+          straatnaam: docSnapshot.data['straatnaam'] ?? '',
+          huisnr: docSnapshot.data['huisnr']?? '')
+    }
+    else{
+      getAnimal(animalId)
+    }
+    }
+    );
+    print(a.animalType);
+    return a;
+    
+  }
+
   
 }

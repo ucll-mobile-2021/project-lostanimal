@@ -7,7 +7,6 @@ class Animal {
   final String huisnr;
   final String gemeente;
   final String userid;
-  //final List<Image> images;
 
   Animal(
       {this.name,
