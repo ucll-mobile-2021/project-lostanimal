@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:lost_animal/models/animal.dart';
 
@@ -16,37 +15,41 @@ class DatabaseService {
   }
 
   Future updateAnimalData(String name, String beschrijving, String animalType,
-      String straatnaam, String huisnr, String gemeente, String userid) async {
-        bool exists = false;
-        
-      await lostAnimalCollection.document(userid+name+animalType).get().then((docSnapshot) => {if(docSnapshot.exists){
-        exists = true,
-        print('bestaat')
-      }else{
-          lostAnimalCollection.document(userid+name+animalType).setData({
-            'name': name,
-            'beschrijving': beschrijving,
-            'animalType': animalType,
-            'straatnaam': straatnaam,
-            'huisnr': huisnr,
-            'gemeente': gemeente,
-            'userid': userid 
-                   
-      }),
-      print('bestaat niet')
-      }}); 
+      String straatnaam, String huisnr, String gemeente, String userid,
+      {String avatarurl = 'null'}) async {
+    bool exists = false;
 
-      if(exists){
-        print('return null');
-        return null;
-      }
-      else{
-        print('userid');
-        return userid;
-      }      
-  
-      
-    
+    await lostAnimalCollection
+        .document(userid + name + animalType)
+        .get()
+        .then((docSnapshot) => {
+              if (docSnapshot.exists)
+                {exists = true, print('bestaat')}
+              else
+                {
+                  lostAnimalCollection
+                      .document(userid + name + animalType)
+                      .setData({
+                    'name': name,
+                    'beschrijving': beschrijving,
+                    'animalType': animalType,
+                    'straatnaam': straatnaam,
+                    'huisnr': huisnr,
+                    'gemeente': gemeente,
+                    'userid': userid,
+                    'avatarurl': avatarurl
+                  }),
+                  print('bestaat niet')
+                }
+            });
+
+    if (exists) {
+      print('return null');
+      return null;
+    } else {
+      print('userid');
+      return userid;
+    }
   }
 
   // animal list from snapshot
@@ -64,28 +67,24 @@ class DatabaseService {
     return lostAnimalCollection.snapshots().map(_animalListFromSnapshot);
   }
 
-  Future getAnimal(String animalId) async{
+  Future getAnimal(String animalId) async {
     Animal a;
-    await lostAnimalCollection.document(animalId).get().then((docSnapshot) => { if(docSnapshot.exists){
-      
-      a = Animal(
-          animalType: docSnapshot.data['animalType'] ?? '',
-          name: docSnapshot.data['name'] ?? '',
-          userid: docSnapshot.data['userid'] ?? '',
-          beschrijving: docSnapshot.data['beschrijving'] ?? '',
-          gemeente: docSnapshot.data['gemeente'] ?? '',
-          straatnaam: docSnapshot.data['straatnaam'] ?? '',
-          huisnr: docSnapshot.data['huisnr']?? '')
-    }
-    else{
-      getAnimal(animalId)
-    }
-    }
-    );
+    await lostAnimalCollection.document(animalId).get().then((docSnapshot) => {
+          if (docSnapshot.exists)
+            {
+              a = Animal(
+                  animalType: docSnapshot.data['animalType'] ?? '',
+                  name: docSnapshot.data['name'] ?? '',
+                  userid: docSnapshot.data['userid'] ?? '',
+                  beschrijving: docSnapshot.data['beschrijving'] ?? '',
+                  gemeente: docSnapshot.data['gemeente'] ?? '',
+                  straatnaam: docSnapshot.data['straatnaam'] ?? '',
+                  huisnr: docSnapshot.data['huisnr'] ?? '')
+            }
+          else
+            {getAnimal(animalId)}
+        });
     print(a.animalType);
     return a;
-    
   }
-
-  
 }

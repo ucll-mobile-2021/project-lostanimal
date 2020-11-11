@@ -7,6 +7,7 @@ class Animal {
   final String huisnr;
   final String gemeente;
   final String userid;
+  final String avatarurl;
 
   Animal(
       {this.name,
@@ -15,5 +16,6 @@ class Animal {
       this.gemeente,
       this.huisnr,
       this.straatnaam,
-      this.userid});
+      this.userid,
+      this.avatarurl});
 }

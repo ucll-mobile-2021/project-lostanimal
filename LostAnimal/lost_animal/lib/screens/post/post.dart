@@ -70,12 +70,13 @@ class _PostState extends State<Post> {
                             setState(() => name = val);
                           }),
                       SizedBox(height: 20.0),
-                      DropdownButton(                        
-                        iconSize: 100.0,
-                        isExpanded: true,
+                      DropdownButton(
+                          iconSize: 100.0,
+                          isExpanded: true,
                           value: animalType,
                           items: [
-                            DropdownMenuItem(child: Text("hond"), value: 'hond'),
+                            DropdownMenuItem(
+                                child: Text("hond"), value: 'hond'),
                             DropdownMenuItem(child: Text("kat"), value: 'kat')
                           ],
                           onChanged: (val) {
@@ -106,7 +107,7 @@ class _PostState extends State<Post> {
                           decoration: textInputDecoration.copyWith(
                               hintText: 'house number'),
                           validator: (val) =>
-                              val.length < 6 ? 'give the house number' : null,
+                              val.length < 0 ? 'give the house number' : null,
                           onChanged: (val) {
                             setState(() => huisnummer = val);
                           }),
@@ -143,9 +144,10 @@ class _PostState extends State<Post> {
                                     'wrong credentials or animal might already exists';
                                 loading = false;
                               });
-                            } 
+                            }
                             if (result != null) {
-                              widget.toggleView(3, id:user.getUid()+name+animalType);
+                              widget.toggleView(3,
+                                  id: user.getUid() + name + animalType);
                             }
                           }
                         },
