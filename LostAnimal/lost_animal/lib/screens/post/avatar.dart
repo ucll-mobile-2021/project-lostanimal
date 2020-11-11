@@ -1,14 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:lost_animal/services/database.dart';
+import 'package:lost_animal/services/storage.dart';
 
 class Avatar extends StatelessWidget {
-  final String avatarUrl;
+  final String animalId;
   final Function onTap;
+  final Storage storage = Storage();
+  final DatabaseService db = DatabaseService();
 
-  const Avatar({this.avatarUrl, this.onTap});
+  Avatar({this.animalId, this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+     return FutureBuilder(
+      future: storage.getAnimalProfileImage(animalId),
+      builder: (BuildContext context, AsyncSnapshot snapshot){
+        if(!snapshot.hasData){
+        return GestureDetector(
+          onTap: onTap,
+          
+        child:  CircleAvatar(
+              radius: 50.0,
+                child: Icon(Icons.photo_camera),
+            )
+          );
+        
+        }
+        if(snapshot.hasData){
+        final url = snapshot.data;
+        print(url);
+        return GestureDetector(
+          onTap: onTap,
+        child:  CircleAvatar(
+              radius: 50.0,
+              backgroundImage: NetworkImage(url),
+            )
+          
+        );}
+      }
+      );
+   /* return GestureDetector(
       onTap: onTap,
       child: Center(
         child: avatarUrl == null
@@ -21,6 +52,6 @@ class Avatar extends StatelessWidget {
                 backgroundImage: NetworkImage(avatarUrl),
               ),
       ),
-    );
+    );*/
   }
 }

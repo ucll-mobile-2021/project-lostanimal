@@ -16,7 +16,7 @@ class DatabaseService {
 
   Future updateAnimalData(String name, String beschrijving, String animalType,
       String straatnaam, String huisnr, String gemeente, String userid,
-      {String avatarurl = 'null'}) async {
+      {String avatarurl = null}) async {
     bool exists = false;
 
     await lostAnimalCollection
@@ -51,6 +51,25 @@ class DatabaseService {
       return userid;
     }
   }
+
+  Future updateAnimalAvatarURL(Animal animal,
+      String avatarurl) async {
+    await lostAnimalCollection
+                      .document(animal.userid + animal.name + animal.animalType)
+                      .setData({
+                    'name': animal.name,
+                    'beschrijving': animal.beschrijving,
+                    'animalType': animal.animalType,
+                    'straatnaam': animal.straatnaam,
+                    'huisnr': animal.huisnr,
+                    'gemeente': animal.gemeente,
+                    'userid': animal.userid,
+                    'avatarurl': avatarurl
+                  });
+                 
+  }
+
+
 
   // animal list from snapshot
   List<Animal> _animalListFromSnapshot(QuerySnapshot snapshot) {
