@@ -14,8 +14,15 @@ class DatabaseService {
     return lostAnimalCollection;
   }
 
-  Future updateAnimalData(String name, String beschrijving, String animalType,
-      String straatnaam, String huisnr, String gemeente, String userid,
+  Future updateAnimalData(
+      String name,
+      String beschrijving,
+      String animalType,
+      String straatnaam,
+      String huisnr,
+      String gemeente,
+      int phonenr,
+      String userid,
       {String avatarurl = null}) async {
     bool exists = false;
 
@@ -37,9 +44,10 @@ class DatabaseService {
                     'huisnr': huisnr,
                     'gemeente': gemeente,
                     'userid': userid,
-                    'avatarurl': avatarurl
+                    'avatarurl': avatarurl,
+                    'phonenr': phonenr
                   }),
-                  print('bestaat niet')
+                  print(phonenr)
                 }
             });
 
@@ -52,24 +60,20 @@ class DatabaseService {
     }
   }
 
-  Future updateAnimalAvatarURL(Animal animal,
-      String avatarurl) async {
+  Future updateAnimalAvatarURL(Animal animal, String avatarurl) async {
     await lostAnimalCollection
-                      .document(animal.userid + animal.name + animal.animalType)
-                      .setData({
-                    'name': animal.name,
-                    'beschrijving': animal.beschrijving,
-                    'animalType': animal.animalType,
-                    'straatnaam': animal.straatnaam,
-                    'huisnr': animal.huisnr,
-                    'gemeente': animal.gemeente,
-                    'userid': animal.userid,
-                    'avatarurl': avatarurl
-                  });
-                 
+        .document(animal.userid + animal.name + animal.animalType)
+        .setData({
+      'name': animal.name,
+      'beschrijving': animal.beschrijving,
+      'animalType': animal.animalType,
+      'straatnaam': animal.straatnaam,
+      'huisnr': animal.huisnr,
+      'gemeente': animal.gemeente,
+      'userid': animal.userid,
+      'avatarurl': avatarurl
+    });
   }
-
-
 
   // animal list from snapshot
   List<Animal> _animalListFromSnapshot(QuerySnapshot snapshot) {

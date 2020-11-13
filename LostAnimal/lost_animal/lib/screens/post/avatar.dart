@@ -12,34 +12,30 @@ class Avatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     return FutureBuilder(
-      future: storage.getAnimalProfileImage(animalId),
-      builder: (BuildContext context, AsyncSnapshot snapshot){
-        if(!snapshot.hasData){
-        return GestureDetector(
-          onTap: onTap,
-          
-        child:  CircleAvatar(
-              radius: 50.0,
-                child: Icon(Icons.photo_camera),
-            )
-          );
-        
-        }
-        if(snapshot.hasData){
-        final url = snapshot.data;
-        print(url);
-        return GestureDetector(
-          onTap: onTap,
-        child:  CircleAvatar(
-              radius: 50.0,
-              backgroundImage: NetworkImage(url),
-            )
-          
-        );}
-      }
-      );
-   /* return GestureDetector(
+    return FutureBuilder(
+        future: storage.getAnimalProfileImage(animalId),
+        // ignore: missing_return
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (!snapshot.hasData) {
+            return GestureDetector(
+                onTap: onTap,
+                child: CircleAvatar(
+                  radius: 50.0,
+                  child: Icon(Icons.photo_camera),
+                ));
+          }
+          if (snapshot.hasData) {
+            final url = snapshot.data;
+            print(url);
+            return GestureDetector(
+                onTap: onTap,
+                child: CircleAvatar(
+                  radius: 50.0,
+                  backgroundImage: NetworkImage(url),
+                ));
+          }
+        });
+    /* return GestureDetector(
       onTap: onTap,
       child: Center(
         child: avatarUrl == null

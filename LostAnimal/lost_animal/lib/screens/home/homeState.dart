@@ -10,13 +10,9 @@ class HomeState extends StatefulWidget {
   HomeState({this.user});
   @override
   _HomeStateState createState() => _HomeStateState(user: user);
-
 }
 
 class _HomeStateState extends State<HomeState> {
-
-  
-  
   final User user;
   _HomeStateState({this.user});
 
@@ -25,28 +21,22 @@ class _HomeStateState extends State<HomeState> {
   Animal a;
 
   void toggleView(int toggle, {String id = ''}) {
-    setState(() => toggleInt  = toggle);
-    setState(() => animalId  = id);
+    setState(() => toggleInt = toggle);
+    setState(() => animalId = id);
   }
-
-
 
   @override
   Widget build(BuildContext context) {
     if (toggleInt == 1) {
       return Home(toggleView: toggleView);
-    } 
-    if(toggleInt ==2){
-    
+    }
+    if (toggleInt == 2) {
       return Post(toggleView: toggleView, user: user);
     }
-    if(toggleInt == 3){
-      
+    if (toggleInt == 3) {
       return AddAnimalPicture(toggleView: toggleView, animal: animalId);
-    }
-    else {
+    } else {
       return Home(toggleView: toggleView);
-
     }
   }
 }

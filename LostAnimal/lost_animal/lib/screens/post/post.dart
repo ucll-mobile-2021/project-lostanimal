@@ -30,6 +30,7 @@ class _PostState extends State<Post> {
   String straatnaam = '';
   String huisnummer = '';
   String woonplaats = '';
+  int phonenr;
 
 //extra param
   @override
@@ -121,6 +122,17 @@ class _PostState extends State<Post> {
                             setState(() => woonplaats = val);
                           }),
                       SizedBox(height: 20.0),
+                      TextFormField(
+                          decoration: textInputDecoration.copyWith(
+                              hintText: 'phone number'),
+                          validator: (val) => val.length < 10
+                              ? 'give your phone number (f.e. : 0412345596)'
+                              : 0,
+                          onChanged: (val) {
+                            print(val);
+                            setState(() => phonenr = int.parse(val));
+                          }),
+                      SizedBox(height: 20.0),
                       RaisedButton(
                         color: Colors.pink[400],
                         child: Text(
@@ -137,6 +149,7 @@ class _PostState extends State<Post> {
                                 straatnaam,
                                 huisnummer,
                                 woonplaats,
+                                phonenr,
                                 user.getUid());
                             if (result == null) {
                               setState(() {

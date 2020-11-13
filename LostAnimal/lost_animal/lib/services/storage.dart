@@ -8,8 +8,6 @@ class Storage {
   FirebaseStorage _storage =
       FirebaseStorage(storageBucket: "gs://lostanimal-e2a45.appspot.com");
 
-    
-
   Future<String> uploadFile(File file, Animal animal) async {
     String animalId = animal.userid + animal.name + animal.animalType;
 
@@ -23,7 +21,7 @@ class Storage {
   }
 
   Future<String> getAnimalProfileImage(String animalId) async {
-  print(await _storage.ref().child(animalId).getDownloadURL());
-  return await _storage.ref().child(animalId).getDownloadURL();
+    print(await _storage.ref().child(animalId).getDownloadURL());
+    return await _storage.ref().child(animalId).getDownloadURL();
   }
 }
