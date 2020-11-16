@@ -16,7 +16,9 @@ class Avatar extends StatelessWidget {
         future: storage.getAnimalProfileImage(animalId),
         // ignore: missing_return
         builder: (BuildContext context, AsyncSnapshot snapshot) {
+          print("**********************************************************");
           if (!snapshot.hasData) {
+            print("+++++++++++++++++++");
             return GestureDetector(
                 onTap: onTap,
                 child: CircleAvatar(
@@ -26,7 +28,7 @@ class Avatar extends StatelessWidget {
           }
           if (snapshot.hasData) {
             final url = snapshot.data;
-            print(url);
+            print("********************************************************** ${url}");
             return GestureDetector(
                 onTap: onTap,
                 child: CircleAvatar(

@@ -33,7 +33,7 @@ class _HomeSState extends State<Home> {
                     icon: Icon(Icons.person),
                     label: Text('logout')),
               ]),
-          body: AnimalList(),
+          body: AnimalList(toggleView: widget.toggleView),
           bottomNavigationBar: BottomAppBar(
             child: Row(
               children: <Widget>[

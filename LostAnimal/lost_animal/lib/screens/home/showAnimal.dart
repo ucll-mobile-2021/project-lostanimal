@@ -1,31 +1,28 @@
-import 'dart:io';
+
 
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:lost_animal/models/animal.dart';
-import 'package:lost_animal/screens/post/avatar.dart';
 import 'package:lost_animal/services/database.dart';
-import 'package:lost_animal/services/storage.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class AddAnimalPicture extends StatefulWidget {
-  final Function toggleView;
-  final String animal;
+import '../post/avatar.dart';
 
-  AddAnimalPicture({this.toggleView, this.animal});
+class ShowAnimal extends StatefulWidget {
+  final Function toggleView;
+  final String animalId;
+
+  ShowAnimal({this.toggleView, this.animalId});
 
   @override
-  _AddAnimalPictureState createState() =>
-      _AddAnimalPictureState(animalId: animal);
+  _ShowAnimalState createState() =>
+      _ShowAnimalState(animalId: animalId);
 }
 
-class _AddAnimalPictureState extends State<AddAnimalPicture> {
+class _ShowAnimalState extends State<ShowAnimal> {
   final DatabaseService _db = DatabaseService();
-  final Storage _storage = Storage();
-  File _image;
 
   final String animalId;
-  _AddAnimalPictureState({this.animalId});
+  _ShowAnimalState({this.animalId});
 
   @override
   Widget build(BuildContext context) {
@@ -54,18 +51,9 @@ class _AddAnimalPictureState extends State<AddAnimalPicture> {
                 padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
                 child: Column(
                   children: <Widget>[
-                    Avatar(
+                   Avatar(
                       animalId: animal.userid + animal.name + animal.animalType,
-                      onTap: () async {
-                        await ImagePicker.pickImage(source: ImageSource.gallery)
-                            .then((image) {
-                          setState(() {
-                            _image = image;
-                          });
-                        });
-                        await _storage.uploadFile(_image, animal);
-                        widget.toggleView(1);
-                      },
+                      onTap: (){},
                     ),
                     SizedBox(height: 20.0),
                     Text('name: ' + animal.name,

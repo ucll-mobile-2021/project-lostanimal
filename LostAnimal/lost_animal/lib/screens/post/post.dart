@@ -125,9 +125,9 @@ class _PostState extends State<Post> {
                       TextFormField(
                           decoration: textInputDecoration.copyWith(
                               hintText: 'phone number'),
-                          validator: (val) => val.length < 10
+                          validator: (val) =>  val.length < 10 || val.length > 10
                               ? 'give your phone number (f.e. : 0412345596)'
-                              : 0,
+                              : null,
                           onChanged: (val) {
                             print(val);
                             setState(() => phonenr = int.parse(val));

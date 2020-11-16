@@ -3,6 +3,7 @@ import 'package:lost_animal/models/animal.dart';
 import 'package:lost_animal/models/user.dart';
 import 'package:lost_animal/screens/home/home.dart';
 import 'package:lost_animal/screens/post/addAnimalPicture.dart';
+import 'package:lost_animal/screens/home/showAnimal.dart';
 import 'package:lost_animal/screens/post/post.dart';
 
 class HomeState extends StatefulWidget {
@@ -35,7 +36,11 @@ class _HomeStateState extends State<HomeState> {
     }
     if (toggleInt == 3) {
       return AddAnimalPicture(toggleView: toggleView, animal: animalId);
-    } else {
+    } 
+    if (toggleInt == 4){
+      return ShowAnimal(toggleView: toggleView, animalId: animalId);
+    }
+    else {
       return Home(toggleView: toggleView);
     }
   }

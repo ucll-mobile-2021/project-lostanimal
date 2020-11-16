@@ -71,7 +71,8 @@ class DatabaseService {
       'huisnr': animal.huisnr,
       'gemeente': animal.gemeente,
       'userid': animal.userid,
-      'avatarurl': avatarurl
+      'avatarurl': avatarurl,
+      'phonenr': animal.phonenr
     });
   }
 
@@ -102,7 +103,9 @@ class DatabaseService {
                   beschrijving: docSnapshot.data['beschrijving'] ?? '',
                   gemeente: docSnapshot.data['gemeente'] ?? '',
                   straatnaam: docSnapshot.data['straatnaam'] ?? '',
-                  huisnr: docSnapshot.data['huisnr'] ?? '')
+                  huisnr: docSnapshot.data['huisnr'] ?? '',
+                  phonenr: docSnapshot.data['phonenr'] ?? 0)
+                  
             }
           else
             {getAnimal(animalId)}

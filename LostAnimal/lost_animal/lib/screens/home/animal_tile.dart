@@ -4,11 +4,27 @@ import 'package:flutter/material.dart';
 import 'package:lost_animal/models/animal.dart';
 import 'package:lost_animal/services/storage.dart';
 
-class AnimalTile extends StatelessWidget {
+import '../../services/storage.dart';
+
+
+class AnimalTile extends StatefulWidget {
   final Animal animal;
   final Storage storage = Storage();
+  final Function toggleView;
 
-  AnimalTile({this.animal});
+  AnimalTile({this.animal, this.toggleView});
+
+  @override
+  _AnimalTileState createState() => _AnimalTileState(animal: animal, storage: storage);
+}
+
+class _AnimalTileState extends State<AnimalTile>{
+
+  final Animal animal;
+  final Storage storage;
+
+  _AnimalTileState({this.animal, this.storage});
+
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +36,10 @@ class AnimalTile extends StatelessWidget {
         child: Card(
           margin: EdgeInsets.fromLTRB(20, 6, 20, 0),
           child: ListTile(
+            onTap: () {
+              print("--------------- onTap animal_tile no pic");
+              widget.toggleView(4, id: animal.userid+animal.name+animal.animalType);
+              },
             leading: CircleAvatar(
               radius: 50.0,
               backgroundColor: Colors.blue
@@ -31,10 +51,16 @@ class AnimalTile extends StatelessWidget {
         );
         final url = snapshot.data;
         return Padding(
+          
         padding: EdgeInsets.only(top: 8.0),
         child: Card(
           margin: EdgeInsets.fromLTRB(20, 6, 20, 0),
           child: ListTile(
+            onTap: () {
+              print("--------------- onTap animal_tile with pic");
+              widget.toggleView(4, id: animal.userid+animal.name+animal.animalType);
+              print("--------------- onTap animal_tile with pic 2");
+              },
             leading: CircleAvatar(
               radius: 50.0,
               backgroundImage: NetworkImage(url),

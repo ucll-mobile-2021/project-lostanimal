@@ -21,6 +21,7 @@ class Storage {
   }
 
   Future<String> getAnimalProfileImage(String animalId) async {
+    print("*************** getAnimalProfileImage");
     print(await _storage.ref().child(animalId).getDownloadURL());
     return await _storage.ref().child(animalId).getDownloadURL();
   }
