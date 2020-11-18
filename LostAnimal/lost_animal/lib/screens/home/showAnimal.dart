@@ -3,9 +3,11 @@
 import 'package:flutter/material.dart';
 import 'package:lost_animal/models/animal.dart';
 import 'package:lost_animal/services/database.dart';
+import 'package:map_launcher/map_launcher.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import '../post/avatar.dart';
+import 'package:geocoding/geocoding.dart';
+
 
 class ShowAnimal extends StatefulWidget {
   final Function toggleView;
@@ -73,7 +75,27 @@ class _ShowAnimalState extends State<ShowAnimal> {
                       child: new Text(
                       'phone number: 0${animal.phonenr}',
                         style: TextStyle(height: 2, fontSize: 25),
-                        ))
+                        )),
+                    FlatButton.icon(
+                      onPressed: () async{
+                        final query = "${animal.huisnr} ${animal.straatnaam}, ${animal.gemeente}";
+                        List<dynamic> location = await locationFromAddress(query);
+                        var address = location[0];
+                        print(address.latitude);
+                        final availableMaps = await MapLauncher.installedMaps;
+                        print(availableMaps);
+                        if(await MapLauncher.isMapAvailable(MapType.google)){
+                          await MapLauncher.showMarker(
+                            mapType: MapType.google,
+                            coords: Coords(address.latitude, address.longitude),
+                            title: "test",
+                            description: "test2"
+                          );
+                        }
+                      },
+                      icon: Icon(Icons.map),
+                      label: Text("Find me"),
+                    )
                   ],
                 ),
               )));
