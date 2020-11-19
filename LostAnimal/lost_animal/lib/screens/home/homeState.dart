@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lost_animal/models/animal.dart';
 import 'package:lost_animal/models/user.dart';
 import 'package:lost_animal/screens/home/home.dart';
+import 'package:lost_animal/screens/home/personAnimals.dart';
 import 'package:lost_animal/screens/post/addAnimalPicture.dart';
 import 'package:lost_animal/screens/home/showAnimal.dart';
 import 'package:lost_animal/screens/post/post.dart';
@@ -20,16 +21,18 @@ class _HomeStateState extends State<HomeState> {
   int toggleInt = 1;
   String animalId = '';
   Animal a;
+  String error = '';
 
-  void toggleView(int toggle, {String id = ''}) {
+  void toggleView(int toggle, {String id = '', String error =''}) {
     setState(() => toggleInt = toggle);
     setState(() => animalId = id);
+    setState(() => this.error = error);
   }
 
   @override
   Widget build(BuildContext context) {
     if (toggleInt == 1) {
-      return Home(toggleView: toggleView);
+      return Home(toggleView: toggleView, error: error);
     }
     if (toggleInt == 2) {
       return Post(toggleView: toggleView, user: user);
@@ -39,6 +42,9 @@ class _HomeStateState extends State<HomeState> {
     } 
     if (toggleInt == 4){
       return ShowAnimal(toggleView: toggleView, animalId: animalId);
+    }
+    if(toggleInt == 5){
+      return PersonalAnimals(toggleView: toggleView, user: user);
     }
     else {
       return Home(toggleView: toggleView);

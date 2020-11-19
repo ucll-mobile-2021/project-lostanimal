@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:lost_animal/models/animal.dart';
 
+
 class DatabaseService {
   final String uid;
 
@@ -12,6 +13,13 @@ class DatabaseService {
 
   Future updateUserData() async {
     return lostAnimalCollection;
+  }
+
+  Future deleteAnimal(String animalId) async{
+    
+      await lostAnimalCollection.document(animalId).delete();
+    
+    
   }
 
   Future updateAnimalData(

@@ -50,7 +50,8 @@ class _PostState extends State<Post> {
                       widget.toggleView(1);
                     },
                     icon: Icon(Icons.home),
-                    label: Text('Home'))
+                    label: Text('Home')),
+                
               ],
             ),
             body: SingleChildScrollView(

@@ -7,14 +7,17 @@ import 'package:lost_animal/screens/home/Animal_List.dart';
 
 class Home extends StatefulWidget {
   final Function toggleView;
-  Home({this.toggleView});
+  final String error;
+  Home({this.toggleView, this.error});
   @override
-  _HomeSState createState() => _HomeSState();
+  _HomeSState createState() => _HomeSState(error: error);
 }
 
 class _HomeSState extends State<Home> {
   final AuthService _auth = AuthService();
+  final String error;
 
+  _HomeSState({this.error});
   @override
   Widget build(BuildContext context) {
     return StreamProvider<List<Animal>>.value(
@@ -30,9 +33,18 @@ class _HomeSState extends State<Home> {
                     onPressed: () async {
                       await _auth.signOut();
                     },
-                    icon: Icon(Icons.person),
+                    icon: Icon(Icons.exit_to_app_rounded),
                     label: Text('logout')),
+                FlatButton.icon(
+                  onPressed: () {
+                    widget.toggleView(5);
+                  }, 
+                  icon: Icon(Icons.account_circle_sharp), 
+                  label: Text(""),
+                  
+                )
               ]),
+          
           body: AnimalList(toggleView: widget.toggleView),
           bottomNavigationBar: BottomAppBar(
             child: Row(

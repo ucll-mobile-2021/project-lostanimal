@@ -25,4 +25,8 @@ class Storage {
     print(await _storage.ref().child(animalId).getDownloadURL());
     return await _storage.ref().child(animalId).getDownloadURL();
   }
+
+  Future<void> deleteFile(String animalId) async{
+    await _storage.ref().child(animalId).delete();
+  }
 }
