@@ -23,6 +23,7 @@ class _PersonalAnimalListState extends State<PersonalAnimalList> {
     List animals = Provider.of<List<Animal>>(context);
 
     return ListView.builder(
+      key: Key(animals.length.toString()),
       itemCount: animals.length == null ? 0 : animals.length,
       itemBuilder: (context, index) {
         return PersonalAnimalTile(animal: animals[index], toggleView: widget.toggleView, user: user);

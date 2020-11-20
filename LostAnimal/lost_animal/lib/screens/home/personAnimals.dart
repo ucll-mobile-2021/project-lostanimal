@@ -30,7 +30,7 @@ class _PersonalAnimalsState extends State<PersonalAnimals>{
             appBar: AppBar(
               backgroundColor: Colors.brown[400],
               elevation: 0.0,
-              title: Text('post your missing animals'),
+              title: Text('Your missing animals'),
               actions: <Widget>[
                 FlatButton.icon(
                     onPressed: () {

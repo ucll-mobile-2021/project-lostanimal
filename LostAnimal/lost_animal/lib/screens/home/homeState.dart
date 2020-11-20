@@ -46,6 +46,7 @@ class _HomeStateState extends State<HomeState> {
     if(toggleInt == 5){
       return PersonalAnimals(toggleView: toggleView, user: user);
     }
+    
     else {
       return Home(toggleView: toggleView);
     }

@@ -64,7 +64,7 @@ class _AddAnimalPictureState extends State<AddAnimalPicture> {
                           });
                         });
                         await _storage.uploadFile(_image, animal);
-                        widget.toggleView(1);
+                        widget.toggleView(5);
                       },
                     ),
                     SizedBox(height: 20.0),

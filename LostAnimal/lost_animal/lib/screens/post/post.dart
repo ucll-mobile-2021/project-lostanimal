@@ -3,6 +3,7 @@ import 'package:lost_animal/services/database.dart';
 import 'package:lost_animal/shared/constants.dart';
 import 'package:lost_animal/shared/loading.dart';
 import 'package:lost_animal/models/user.dart';
+import 'package:geocoding/geocoding.dart';
 
 class Post extends StatefulWidget {
   final Function toggleView;
@@ -43,7 +44,7 @@ class _PostState extends State<Post> {
             appBar: AppBar(
               backgroundColor: Colors.brown[400],
               elevation: 0.0,
-              title: Text('post your missing animal'),
+              title: Text('Post your missing animal'),
               actions: <Widget>[
                 FlatButton.icon(
                     onPressed: () {
@@ -143,7 +144,21 @@ class _PostState extends State<Post> {
                         onPressed: () async {
                           if (_formKey.currentState.validate()) {
                             setState(() => loading = true);
-                            dynamic result = await _db.updateAnimalData(
+                            final query = huisnummer + straatnaam + ", " + woonplaats;
+                            List<dynamic> location;
+                            dynamic result;
+                            try {
+                              location = await locationFromAddress(query);
+                            }
+                          catch(e){
+                            print("error");
+                            setState((){ 
+                              error = 'geen geldig adres';
+                              loading = false;
+                            });
+                          }
+                          if(location != null){
+                            result = await _db.updateAnimalData(
                                 name,
                                 beschrijving,
                                 animalType,
@@ -159,6 +174,9 @@ class _PostState extends State<Post> {
                                 loading = false;
                               });
                             }
+                          }
+                            
+                            
                             if (result != null) {
                               widget.toggleView(3,
                                   id: user.getUid() + name + animalType);

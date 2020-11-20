@@ -24,6 +24,7 @@ class _ShowAnimalState extends State<ShowAnimal> {
   final DatabaseService _db = DatabaseService();
 
   final String animalId;
+  String error = '';
   _ShowAnimalState({this.animalId});
 
   @override
@@ -38,7 +39,7 @@ class _ShowAnimalState extends State<ShowAnimal> {
               appBar: AppBar(
                 backgroundColor: Colors.brown[400],
                 elevation: 0.0,
-                title: Text('your missing animal'),
+                title: Text('Missing animal'),
                 actions: <Widget>[
                   FlatButton.icon(
                       onPressed: () {
@@ -57,6 +58,11 @@ class _ShowAnimalState extends State<ShowAnimal> {
                       animalId: animal.userid + animal.name + animal.animalType,
                       onTap: (){},
                     ),
+                    SizedBox(height: 12.0),
+                      Text(
+                        error,
+                        style: TextStyle(color: Colors.red, fontSize: 20.0),
+                      ),
                     SizedBox(height: 20.0),
                     Text('name: ' + animal.name,
                         style: TextStyle(height: 2, fontSize: 25)),
@@ -79,23 +85,37 @@ class _ShowAnimalState extends State<ShowAnimal> {
                     FlatButton.icon(
                       onPressed: () async{
                         final query = "${animal.huisnr} ${animal.straatnaam}, ${animal.gemeente}";
-                        List<dynamic> location = await locationFromAddress(query);
+                        print("locationeref");
+                        List<dynamic> location;
+                        try {
+                          location = await locationFromAddress(query);
+                          }
+                        catch(e){
+                          print("error");
+                          setState(() => error = 'geen geldig adres');
+                        }
+                        if(location != null){
                         var address = location[0];
-                        print(address.latitude);
-                        final availableMaps = await MapLauncher.installedMaps;
-                        print(availableMaps);
-                        if(await MapLauncher.isMapAvailable(MapType.google)){
+                          print(address);
+                          final availableMaps = await MapLauncher.installedMaps;
+                          print(availableMaps);
+                          if(await MapLauncher.isMapAvailable(MapType.google)){
                           await MapLauncher.showMarker(
                             mapType: MapType.google,
                             coords: Coords(address.latitude, address.longitude),
-                            title: "test",
+                            title: "${animal.gemeente}",
                             description: "test2"
-                          );
+                            );
+                           }
                         }
+                        print(location);
+                        
+                        
                       },
                       icon: Icon(Icons.map),
                       label: Text("Find me"),
-                    )
+                    ),
+                    
                   ],
                 ),
               )));

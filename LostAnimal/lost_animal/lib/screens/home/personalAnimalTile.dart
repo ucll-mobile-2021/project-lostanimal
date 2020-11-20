@@ -60,7 +60,7 @@ class _PersonalAnimalTileState extends State<PersonalAnimalTile>{
                   onPressed: () async{
                     setState(() => loading = true);
                    await _db.deleteAnimal(animal.userid+animal.name+animal.animalType);
-                   widget.toggleView(1, error: error);
+                   
                   },
                   icon: Icon(Icons.delete_forever_sharp),
                   label: Text('delete'),
@@ -93,7 +93,7 @@ class _PersonalAnimalTileState extends State<PersonalAnimalTile>{
                   onPressed: () async{
                    await _db.deleteAnimal(animal.userid+animal.name+animal.animalType);
                    await storage.deleteFile(animal.userid+animal.name+animal.animalType);
-                   widget.toggleView(1, error: error);
+                   
                   },
                   icon: Icon(Icons.delete_forever_sharp),
                   label: Text('delete'),

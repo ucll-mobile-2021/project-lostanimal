@@ -56,12 +56,12 @@ class _HomeSState extends State<Home> {
                     },
                     icon: Icon(Icons.add),
                     label: Text('add')),
-                FlatButton.icon(
+                /*FlatButton.icon(
                     onPressed: () async {
                       await _auth.signOut();
                     },
                     icon: Icon(Icons.settings),
-                    label: Text('Change Radius'))
+                    label: Text('Change Radius'))*/
               ],
             ),
           ),
