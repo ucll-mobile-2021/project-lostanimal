@@ -21,10 +21,12 @@ class _PersonalAnimalListState extends State<PersonalAnimalList> {
   @override
   Widget build(BuildContext context) {
     List animals = Provider.of<List<Animal>>(context);
-
+    if(animals == null){
+      animals = new List<Animal>();
+    }
     return ListView.builder(
+      itemCount: animals == null ? 0 : animals.length,
       key: Key(animals.length.toString()),
-      itemCount: animals.length == null ? 0 : animals.length,
       itemBuilder: (context, index) {
         return PersonalAnimalTile(animal: animals[index], toggleView: widget.toggleView, user: user);
       },

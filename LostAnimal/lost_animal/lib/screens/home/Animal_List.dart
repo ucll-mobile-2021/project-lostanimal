@@ -18,7 +18,7 @@ class _AnimalListState extends State<AnimalList> {
     List animals = Provider.of<List<Animal>>(context);
 
     return ListView.builder(
-      itemCount: animals.length == null ? 0 : animals.length,
+      itemCount: animals == null ? 0 : animals.length,
       itemBuilder: (context, index) {
         return AnimalTile(animal: animals[index], toggleView: widget.toggleView);
       },
