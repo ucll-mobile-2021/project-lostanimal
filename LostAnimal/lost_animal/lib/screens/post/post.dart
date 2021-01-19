@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:lost_animal/services/database.dart';
 import 'package:lost_animal/shared/constants.dart';
 import 'package:lost_animal/shared/loading.dart';
@@ -89,7 +90,7 @@ class _PostState extends State<Post> {
                       TextFormField(
                           decoration: textInputDecoration.copyWith(
                               hintText: 'description'),
-                          validator: (val) => val.length < 6
+                          validator: (val) => val.isEmpty
                               ? 'give a description of the lost animal'
                               : null,
                           onChanged: (val) {
@@ -99,7 +100,7 @@ class _PostState extends State<Post> {
                       TextFormField(
                           decoration:
                               textInputDecoration.copyWith(hintText: 'street'),
-                          validator: (val) => val.length < 6
+                          validator: (val) => val.isEmpty
                               ? 'give the streetname of the spot where the animal has been seen last'
                               : null,
                           onChanged: (val) {
@@ -119,7 +120,7 @@ class _PostState extends State<Post> {
                           decoration:
                               textInputDecoration.copyWith(hintText: 'city'),
                           validator: (val) =>
-                              val.length < 6 ? 'give the city' : null,
+                              val.isEmpty  ? 'give the city' : null,
                           onChanged: (val) {
                             setState(() => woonplaats = val);
                           }),
@@ -127,7 +128,11 @@ class _PostState extends State<Post> {
                       TextFormField(
                           decoration: textInputDecoration.copyWith(
                               hintText: 'phone number'),
-                          validator: (val) =>  val.length < 10 || val.length > 10
+                          keyboardType: TextInputType.phone,
+                          inputFormatters: <TextInputFormatter>[
+                            FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
+                          ],
+                          validator: (val) =>  val.length == 0 || val.isEmpty
                               ? 'give your phone number (f.e. : 0412345596)'
                               : null,
                           onChanged: (val) {
@@ -195,4 +200,11 @@ class _PostState extends State<Post> {
               ),
             ));
   }
+}
+bool isNumeric(String s) {
+
+ if (s == null) {
+   return false;
+ }
+ return double.tryParse(s) != null;
 }
